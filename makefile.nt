@@ -1,0 +1,23 @@
+!include $(MOCADIR)\makefiles\StandardHeader.mk.win32
+
+APPNAME=servicemgr
+
+OFILES=servicemgr.obj
+
+TEMPFILES=messages.rc \
+	  messages.h \
+	  messages.res \
+	  MSG00409.bin
+
+#PREREQS=messages.res
+
+NOMOCALIBS=TRUE
+
+EXTRALIBS=MOCAos-static.lib MOCAmis-static.lib
+
+messages.res: messages.mc
+	mc -U messages.mc
+	rc -r messages.rc
+
+!include $(MOCADIR)\makefiles\Application.mk.win32
+!include $(MOCADIR)\makefiles\StandardFooter.mk.win32
